@@ -1,0 +1,16 @@
+﻿@model Product
+
+@{
+    ViewData["ShowButton"] = false;
+}
+
+<div class="col-md-4">
+   
+    <partial name="_DisplayProduct" model="Model" view-data="ViewData" />
+
+    <form asp-action="Delete" method="post">
+        <h4>Are sure you want to delete this product?</h4>
+        <input type="submit" value="Yes" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">No</a>
+    </form>
+</div>

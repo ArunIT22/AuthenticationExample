@@ -19,6 +19,8 @@ builder.Services.AddDbContext<BikeStoresContext>(option => option.UseSqlServer(b
 
 builder.Services.AddScoped<IRepository, AccountRepository>();
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

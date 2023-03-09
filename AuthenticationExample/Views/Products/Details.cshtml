@@ -1,0 +1,12 @@
+﻿@model Product
+
+@{
+    ViewData["ShowButton"] = false;
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <partial name="_DisplayProduct" model="Model" view-data="ViewData" />
+    </div>
+    <a asp-action="Index">Back to List</a>
+</div>

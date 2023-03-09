@@ -17,7 +17,7 @@ namespace AuthenticationExample.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -41,12 +41,6 @@ namespace AuthenticationExample.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Authorize]
-        [HttpPost]
-        public IActionResult Logout()
-        {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index");
-        }
+       
     }
 }

@@ -1,2 +1,16 @@
 ﻿@model IEnumerable<Product>
 
+@{
+    ViewData["ShowButton"] = true;
+}
+
+<div class="row">
+
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <partial name="_DisplayProduct" model="product" view-data="ViewData">
+        </div>
+    }
+
+</div>

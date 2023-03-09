@@ -1,0 +1,33 @@
+﻿@model Product
+
+@{
+    bool showButton = (bool)ViewData["ShowButton"];
+}
+
+<div class="card mb-3">
+    <div class="card-header bg-success text-white">
+        <strong>Product Name = </strong> @Model.ProductName
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>Model Year = </strong>@Model.ModelYear
+        </li>
+        <li class="list-group-item">
+            <strong>List Price = </strong>@Model.ListPrice
+        </li>
+        <li class="list-group-item">
+            <strong>Brand = </strong>@Model.Brand.BrandName
+        </li>
+        <li class="list-group-item">
+            <strong>Category = </strong>@Model.Category.CategoryName
+        </li>
+    </ul>
+
+    @if (showButton)
+    {
+        <div class="card-footer">
+            <a asp-action="Details" asp-route-id="@Model.ProductId" class="btn btn-primary">Details</a>
+            <a asp-action="Delete" asp-route-id="@Model.ProductId" class="btn btn-danger">Delete</a>
+        </div>
+    }
+</div>
