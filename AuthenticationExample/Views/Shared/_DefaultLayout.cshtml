@@ -21,13 +21,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Products" asp-action="Index">Products</a>
-                        </li>
+                        </li>                                           
                     </ul>
                     <!--Implementing Partial Page -->
                     <partial name="_LoginPartial" />
@@ -38,7 +32,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <h1>Admin Layout</h1>
+            <h2>Default Layout</h2>
             @RenderBody()
         </main>
     </div>

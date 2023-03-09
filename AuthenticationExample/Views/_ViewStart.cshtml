@@ -1,3 +1,28 @@
 ﻿@{
-    Layout = "_Layout";
+    //Layout = "_Layout";
+    var claims = User.Claims;
 }
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    string layout = string.Empty;
+    @foreach (var item in claims)
+    {
+        if (item.Value == "admin")
+        {
+            layout = "_Layout";
+        }
+        else
+        {
+            layout = "_CustomerLayout";
+        }
+    }
+
+    Layout = layout;
+}
+else
+{
+    Layout = "_DefaultLayout";
+}
+
