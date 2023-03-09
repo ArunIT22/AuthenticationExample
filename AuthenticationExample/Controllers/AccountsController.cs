@@ -33,7 +33,8 @@ namespace AuthenticationExample.Controllers
                     var claim = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, loginVM.UserName),
-                    new Claim(ClaimTypes.Email, userDetails.EmailId)
+                    new Claim(ClaimTypes.Email, userDetails.EmailId),
+                    new Claim (ClaimTypes.Role, userDetails.RoleName)
                 };
 
                     var claimIdentity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);

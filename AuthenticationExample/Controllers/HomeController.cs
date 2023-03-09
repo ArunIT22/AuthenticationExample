@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 namespace AuthenticationExample.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -16,13 +17,20 @@ namespace AuthenticationExample.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin, employee")]
+        public IActionResult AdminEmployee()
         {
             return View();
         }
@@ -33,6 +41,7 @@ namespace AuthenticationExample.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Logout()
         {

@@ -7,4 +7,13 @@ namespace AuthenticationExample.Repositories
     {
         UserDetail ValidateUser(string username, string password);
     }
+
+    public interface IProductRepository
+    {
+        IEnumerable<Product> GetProducts();
+
+        Product? GetProductById(int? id);
+
+        Product? DeleteProduct(int? id);
+    }
 }
