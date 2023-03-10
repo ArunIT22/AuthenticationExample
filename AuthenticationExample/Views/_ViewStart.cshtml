@@ -1,25 +1,16 @@
-﻿@{
-    //Layout = "_Layout";
-    var claims = User.Claims;
-}
+﻿@using System.Security.Claims;
 
-
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity!.IsAuthenticated)
 {
-    string layout = string.Empty;
-    @foreach (var item in claims)
+    var roleName = User.FindFirstValue(ClaimTypes.Role);
+    if (roleName == "admin")
     {
-        if (item.Value == "admin")
-        {
-            layout = "_Layout";
-        }
-        else
-        {
-            layout = "_CustomerLayout";
-        }
+        Layout = "_Layout";
     }
-
-    Layout = layout;
+    else if (roleName == "employee")
+    {
+        Layout = "_EmployeeLayout";
+    }
 }
 else
 {
