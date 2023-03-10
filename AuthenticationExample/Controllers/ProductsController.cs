@@ -48,5 +48,10 @@ namespace AuthenticationExample.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult ProductByBrand()
+        {
+            return View();
+        }
     }
 }

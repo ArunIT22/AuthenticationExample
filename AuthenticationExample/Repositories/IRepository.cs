@@ -15,5 +15,7 @@ namespace AuthenticationExample.Repositories
         Product? GetProductById(int? id);
 
         Product? DeleteProduct(int? id);
+
+        IEnumerable<CountProductByBrandVM> CountProductByBrandVM();
     }
 }
