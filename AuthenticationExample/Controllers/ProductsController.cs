@@ -15,6 +15,7 @@ namespace AuthenticationExample.Controllers
         [Route("Products/GetProduct/{id?}")]
         public IActionResult GetProducts(int? id = null)
         {
+            throw new Exception("Unable to process your request. Server unavailable");
             ViewBag.Categories = _repository.GetCategories();
             //if (id != null)
             //{
@@ -36,6 +37,7 @@ namespace AuthenticationExample.Controllers
 
         public IActionResult Index(int? id = null)
         {
+            throw new NullReferenceException();
             var products = _repository.GetProducts();
             return View(products);
         }

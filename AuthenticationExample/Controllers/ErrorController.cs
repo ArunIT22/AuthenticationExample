@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationExample.Controllers
 {
@@ -17,6 +18,17 @@ namespace AuthenticationExample.Controllers
                     break;
             }
             return View();
+        }
+
+        [Route("Error")]
+        public IActionResult Error()
+        {
+            var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            ViewBag.Path = exceptionDetails.Path;
+            ViewBag.ErrorMessage = exceptionDetails.Error.Message;
+           // ViewBag.StackTrace = exceptionDetails.Error.StackTrace;
+
+            return View("UnhandledError");
         }
     }
 }
