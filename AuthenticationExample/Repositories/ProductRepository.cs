@@ -15,14 +15,20 @@ namespace AuthenticationExample.Repositories
 
         public IEnumerable<CountProductByBrandVM> CountProductByBrandVM()
         {
-            //var products_brands = _context.Brands.GroupJoin(_context.Products,
+            //var groupJoin = _context.Brands.GroupJoin(_context.Products,
             //                                                b => b.BrandId,
             //                                                p => p.BrandId,
-            //                                                (b, p) => new CountProductByBrandVM
+            //                                                (b, pgroup) => new 
             //                                                {
             //                                                    BrandName = b.BrandName,
-            //                                                    ProductCount = p.Count()
+            //                                                    Product = pgroup
             //                                                });
+
+            //var products_brands = groupJoin.Select(x => new CountProductByBrandVM
+            //{
+            //    BrandName = x.BrandName,
+            //    ProductCount = x.Product.Count()
+            //});
 
             var joinedData = _context.Products.Join(_context.Brands,
                                               p => p.BrandId,
@@ -39,7 +45,7 @@ namespace AuthenticationExample.Repositories
                 ProductCount = x.Count()
             });
 
-            return products_brands.ToList();
+            return products_brands;
         }
 
         public Product? DeleteProduct(int? id)

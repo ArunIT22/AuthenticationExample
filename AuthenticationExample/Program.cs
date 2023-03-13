@@ -5,8 +5,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+//Log only in Console
+builder.Logging.AddConsole();
+builder.Logging.AddSeq();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+//Host.CreateDefaultBuilder();
 
 //Add Cookie Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>

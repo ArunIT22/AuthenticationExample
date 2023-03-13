@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthenticationExample.ViewComponents
-{
+{    
     public class ProductByBrandViewComponent : ViewComponent
     {
         private readonly IProductRepository _repository;

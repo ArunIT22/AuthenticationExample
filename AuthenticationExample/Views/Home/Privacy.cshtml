@@ -3,14 +3,18 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<h3>Welcome, @User.Identity.Name</h3>
+@if (User.Identity!.IsAuthenticated)
+{
 
-<table class="table">
-    @foreach (var item in User.Claims)
-    {
-        <tr>
-            <td>@item.Type</td>
-            <td>@item.Value</td>
-        </tr>
-    }
-</table>
+    <h3>Welcome, @User.Identity.Name</h3>
+
+    <table class="table">
+        @foreach (var item in User.Claims)
+        {
+            <tr>
+                <td>@item.Type</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+    </table>
+}

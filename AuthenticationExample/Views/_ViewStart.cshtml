@@ -1,4 +1,4 @@
-﻿@using System.Security.Claims;
+﻿@*@using System.Security.Claims;
 
 @if (User.Identity!.IsAuthenticated)
 {
@@ -16,4 +16,8 @@ else
 {
     Layout = "_DefaultLayout";
 }
+*@
 
+@{
+    Layout = "_Layout";
+}

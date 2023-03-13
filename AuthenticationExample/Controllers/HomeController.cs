@@ -15,17 +15,46 @@ namespace AuthenticationExample.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _logger.Log(LogLevel.Information, "This is my Home Controller");
+            _logger.Log(LogLevel.Warning, "This is warning Message");
+            _logger.LogInformation("Message from Log INformation method");
+            _logger.LogDebug("Log Debug Message");
+            _logger.Log(LogLevel.Trace, "Message from Trace");
+            
         }
 
         [AllowAnonymous]
         public IActionResult Index()
         {
+            _logger.LogInformation("Default Value = {count}", 10);
+            _logger.LogInformation("Date and Time :{date}", DateTime.Now.ToString());
+            string name = "Hari";
+            string city = "Chennai";
+
+            _logger.LogInformation("Name :{name}, City :{city}", name, city);
+
+            try
+            {
+                throw new Exception("Error Occurred, When connecting to DB");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(1234, e, "Error occurred on Index Method");
+            }
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public IActionResult Privacy()
         {
+            try
+            {
+                throw new Exception("Unable to create object");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(1234, e, "Error occurred on Privacy Method");
+            }
             return View();
         }
 
