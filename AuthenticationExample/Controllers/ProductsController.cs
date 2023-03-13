@@ -12,7 +12,29 @@ namespace AuthenticationExample.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
+        [Route("Products/GetProduct/{id?}")]
+        public IActionResult GetProducts(int? id = null)
+        {
+            ViewBag.Categories = _repository.GetCategories();
+            //if (id != null)
+            //{
+            //    var productByCategory = _repository.GetProductByCategory(id.Value);
+            //    if (productByCategory.Any())
+            //    {
+            //        return View(productByCategory);
+            //    }
+            //    return BadRequest();
+            //}
+            //var products = _repository.GetProducts();
+            //return View(products);
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            return View();
+        }
+
+        public IActionResult Index(int? id = null)
         {
             var products = _repository.GetProducts();
             return View(products);
@@ -42,7 +64,7 @@ namespace AuthenticationExample.Controllers
         public IActionResult DeleteProduct(int? id)
         {
             var products = _repository.DeleteProduct(id!.Value);
-            if(products == null || id == null)
+            if (products == null || id == null)
             {
                 return NotFound();
             }

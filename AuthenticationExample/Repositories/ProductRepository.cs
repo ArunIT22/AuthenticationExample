@@ -15,21 +15,6 @@ namespace AuthenticationExample.Repositories
 
         public IEnumerable<CountProductByBrandVM> CountProductByBrandVM()
         {
-            //var groupJoin = _context.Brands.GroupJoin(_context.Products,
-            //                                                b => b.BrandId,
-            //                                                p => p.BrandId,
-            //                                                (b, pgroup) => new 
-            //                                                {
-            //                                                    BrandName = b.BrandName,
-            //                                                    Product = pgroup
-            //                                                });
-
-            //var products_brands = groupJoin.Select(x => new CountProductByBrandVM
-            //{
-            //    BrandName = x.BrandName,
-            //    ProductCount = x.Product.Count()
-            //});
-
             var joinedData = _context.Products.Join(_context.Brands,
                                               p => p.BrandId,
                                               b => b.BrandId,
@@ -58,6 +43,16 @@ namespace AuthenticationExample.Repositories
                 return product;
             }
             return null;
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public IEnumerable<Product> GetProductByCategory(int? categoryId)
+        {
+            return _context.Products.Include(x => x.Category).Where(x => x.CategoryId == categoryId);
         }
 
         public Product? GetProductById(int? id) => _context.Products.Include(x => x.Brand).Include(x => x.Category).SingleOrDefault(x => x.ProductId == id!.Value);
